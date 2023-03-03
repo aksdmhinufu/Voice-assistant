@@ -1,0 +1,10 @@
+pywhatkit
+SpeechRecognition
+pyttsx3
+wikipedia
+yagmail
+wolframalpha
+newspaper3k
+requests
+bs4
+GoogleSearch
