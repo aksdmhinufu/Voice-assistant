@@ -11,7 +11,6 @@ from datetime import datetime  # built into python
 import imaplib  # built into python
 import traceback  # built into python
 import email  # pip install
-from cal_setup import get_calendar_service
 from newspaper import fulltext
 import newspaper
 from functools import lru_cache
@@ -280,23 +279,6 @@ def read_email(key, value):
         print("\nException handled: " + str(e))
         print("\nException details:")
         traceback.print_tb(e.__traceback__)
-@lru_cache(100)
-def calendar():
-    service = get_calendar_service()
-    # Call the Calendar API
-    now = datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
-    speak('Getting List of the next 10 events')
-    events_result = service.events().list(
-        calendarId='primary', timeMin=now,
-        maxResults=10, singleEvents=True,
-        orderBy='startTime').execute()
-    events = events_result.get('items', [])
-
-    if not events:
-        speak('No upcoming events found.')
-    for event in events:
-        start = event['start'].get('dateTime', event['start'].get('date'))
-        speak(start, event['summary'])
 @lru_cache(100)
 def speak(audio):
     engine.say(audio)
