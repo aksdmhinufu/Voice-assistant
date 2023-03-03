@@ -505,8 +505,6 @@ if __name__ == "__main__":
 
             elif "tell me the definition of" in query:
                 definition(query)
-            elif "events on my calendar" in query:
-                calendar()
 
                 # elif "make an event" in query:
                 # make_a_event()
